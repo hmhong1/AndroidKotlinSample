@@ -1,8 +1,8 @@
 # AndroidKotlinSample
 
-### kotlin
-# mvvm architecutre
-# dagger hilt
-# rxjava
-# rxandroid
-# jetpack
+##### kotlin
+##### mvvm architecutre
+##### dagger hilt
+##### rxjava
+##### rxandroid
+##### jetpack
