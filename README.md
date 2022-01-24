@@ -6,3 +6,4 @@
 ##### rxjava
 ##### rxandroid
 ##### jetpack
+##### databinding

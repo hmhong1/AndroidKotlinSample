@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.app.Activity" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.h.androidkotlinsample.ui.web.CommonWebFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.h.androidkotlinsample.ui.web.CommonWebViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#546464">
+
+        <include
+            android:id="@+id/main_actionbar_layout"
+            layout="@layout/main_actionbar_layout"
+            app:layout_constraintBottom_toTopOf="@id/contentLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_actionbar_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
