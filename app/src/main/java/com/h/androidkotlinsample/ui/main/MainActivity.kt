@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.h.androidkotlinsample.R
 import com.h.androidkotlinsample.databinding.ActivityMainBinding
 import com.h.androidkotlinsample.databinding.DrawerMenuLayoutBinding
+import com.h.androidkotlinsample.interfaces.BackPressedInterface
 import com.h.androidkotlinsample.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,10 +50,13 @@ class MainActivity : BaseActivity() {
         replaceFragment(MainFragment())
     }
 
-    open fun replaceFragment(fragment: Fragment, tag: String? = null) {
+    open fun replaceFragment(fragment: Fragment, bundle: Bundle? = null, tag: String? = null) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+
+        if(bundle != null) fragment.arguments = bundle
         if (!tag.isNullOrEmpty()) fragmentTransaction.addToBackStack(tag)
+
         fragmentTransaction.replace(R.id.fragmentLayout, fragment).commitAllowingStateLoss()
     }
 
@@ -63,16 +67,27 @@ class MainActivity : BaseActivity() {
         if (binding.drawerLayout != null && binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
             binding.drawerLayout.closeDrawer(binding.navigationView)
         } else {
-            if (backStackCount() == 0) {
+            if(backInterfaceCheck()) {
                 backPressed()
             }
         }
     }
 
+    fun backInterfaceCheck() : Boolean {
+        var fragment = supportFragmentManager.findFragmentById(R.id.fragmentLayout)
+
+        if (fragment !is BackPressedInterface || !(fragment as BackPressedInterface).onBackPressed()) {
+            if (backStackCount() == 0) {
+                return true
+            }
+        }
+        return false
+    }
+
     /**
      * framgnet back stack
      * */
-    fun backStackCount() : Int {
+    private fun backStackCount() : Int {
         var count = supportFragmentManager.backStackEntryCount
 
         if (count != 0) {

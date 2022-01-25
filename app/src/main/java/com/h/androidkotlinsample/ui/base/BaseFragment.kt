@@ -1,5 +1,6 @@
 package com.h.androidkotlinsample.ui.base
 
+import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -49,7 +50,7 @@ open class BaseFragment : Fragment() {
         }
     }
 
-    open fun replaceFragment(fragment: Fragment, tag: String? = null) {
-        (activity as MainActivity).replaceFragment(fragment, tag)
+    open fun replaceFragment(fragment: Fragment, bundle: Bundle? = null, tag: String? = null) {
+        (activity as MainActivity).replaceFragment(fragment, bundle, tag)
     }
 }

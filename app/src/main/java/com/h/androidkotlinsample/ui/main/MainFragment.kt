@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.h.androidkotlinsample.R
+import com.h.androidkotlinsample.common.Constnets
 import com.h.androidkotlinsample.databinding.FragmentMainBinding
 import com.h.androidkotlinsample.databinding.MainActionbarLayoutBinding
 import com.h.androidkotlinsample.ui.base.BaseFragment
@@ -43,7 +44,6 @@ class MainFragment : BaseFragment() {
     }
 
     private fun init() {
-        mainActionbarBinding.actionBarBtnBack.visibility = View.VISIBLE
         mainActionbarBinding.actionBarBtnMenu.visibility = View.VISIBLE
     }
 
@@ -58,6 +58,8 @@ class MainFragment : BaseFragment() {
     }
 
     fun onClickBtnWebview() {
-        replaceFragment(CommonWebFragment(), CommonWebFragment::class.java.simpleName)
+        var bundle = Bundle()
+        bundle.putString(Constnets.KEY_WEB_URL, "https://www.google.com")
+        replaceFragment(CommonWebFragment(), bundle, CommonWebFragment::class.java.simpleName)
     }
 }
