@@ -1,5 +1,6 @@
 package com.h.androidkotlinsample.ui.base
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
@@ -28,12 +29,12 @@ open class BaseActivity : AppCompatActivity() {
             progressDialog?.let {
                 if(!it.isShowing) {
                     if (!isFinishing) {
-                        progressDialog = CustomProgressDialog.show(this)
+                        progressDialog = CustomProgressDialog(this).show(this)
                     }
                 }
             } ?: run {
                 if (!isFinishing) {
-                    progressDialog = CustomProgressDialog.show(this)
+                    progressDialog = CustomProgressDialog(this).show(this)
                 }
             }
         } catch (e: Exception) {

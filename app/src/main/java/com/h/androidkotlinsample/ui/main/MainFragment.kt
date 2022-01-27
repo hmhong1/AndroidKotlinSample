@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.h.androidkotlinsample.R
@@ -13,6 +14,7 @@ import com.h.androidkotlinsample.databinding.FragmentMainBinding
 import com.h.androidkotlinsample.databinding.MainActionbarLayoutBinding
 import com.h.androidkotlinsample.ui.base.BaseFragment
 import com.h.androidkotlinsample.ui.web.CommonWebFragment
+import com.h.androidkotlinsample.widget.CommonDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,5 +63,28 @@ class MainFragment : BaseFragment() {
         var bundle = Bundle()
         bundle.putString(Constnets.KEY_WEB_URL, "https://www.google.com")
         replaceFragment(CommonWebFragment(), bundle, CommonWebFragment::class.java.simpleName)
+    }
+    fun onClickBtnCustomDialog1() {
+        var dialog = CommonDialog(requireContext())
+        dialog.showCommonDialog("", "custom dialog 1 content", "OK", View.OnClickListener {
+            Toast.makeText(requireContext(), "OK onclick", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        })
+        dialog.show()
+    }
+    fun onClickBtnCustomDialog2() {
+        var dialog = CommonDialog(requireContext())
+        dialog.cancelable(false)
+        dialog.canceledOnTouchOutside(false)
+        dialog.showCommonDialog("title", "custom dialog 2 content", "Cancel", "OK",
+            View.OnClickListener {
+                Toast.makeText(requireContext(), "Cancel onclick", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            },
+            View.OnClickListener {
+                Toast.makeText(requireContext(), "OK onclick", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+        })
+        dialog.show()
     }
 }

@@ -19,7 +19,7 @@ open class BaseFragment : Fragment() {
     open fun showProgressDialog() {
         progressDialog.runCatching {
             if (progressDialog == null || !progressDialog!!.isShowing) {
-                progressDialog = CustomProgressDialog.show(requireActivity())
+                progressDialog = CustomProgressDialog(requireActivity()).show(requireActivity())
             }
         }.onFailure {
             Log.e(TAG, it.toString())
