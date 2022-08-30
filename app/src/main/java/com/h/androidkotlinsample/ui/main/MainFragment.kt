@@ -13,6 +13,7 @@ import com.h.androidkotlinsample.common.Constnets
 import com.h.androidkotlinsample.databinding.FragmentMainBinding
 import com.h.androidkotlinsample.databinding.MainActionbarLayoutBinding
 import com.h.androidkotlinsample.ui.base.BaseFragment
+import com.h.androidkotlinsample.ui.theads.CoroutineFragment
 import com.h.androidkotlinsample.ui.web.CommonWebFragment
 import com.h.androidkotlinsample.widget.CommonDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +65,7 @@ class MainFragment : BaseFragment() {
         bundle.putString(Constnets.KEY_WEB_URL, "https://www.google.com")
         replaceFragment(CommonWebFragment(), bundle, CommonWebFragment::class.java.simpleName)
     }
+
     fun onClickBtnCustomDialog1() {
         var dialog = CommonDialog(requireContext())
         dialog.showCommonDialog("", "custom dialog 1 content", "OK", View.OnClickListener {
@@ -72,6 +74,7 @@ class MainFragment : BaseFragment() {
         })
         dialog.show()
     }
+
     fun onClickBtnCustomDialog2() {
         var dialog = CommonDialog(requireContext())
         dialog.cancelable(false)
@@ -86,5 +89,9 @@ class MainFragment : BaseFragment() {
                 dialog.dismiss()
         })
         dialog.show()
+    }
+
+    fun onClickBtnCorotine() {
+        replaceFragment(CoroutineFragment(), null, CoroutineFragment::class.java.simpleName)
     }
 }

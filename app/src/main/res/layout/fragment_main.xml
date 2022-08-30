@@ -82,6 +82,15 @@
                 android:onClick="@{() -> fragment.onClickBtnCustomDialog2()}"
                 app:layout_constraintStart_toEndOf="@id/btnDialog_1"/>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCoroutine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="coroutine"
+                app:layout_constraintTop_toBottomOf="@id/btnDialog_1"
+                android:onClick="@{() -> fragment.onClickBtnCorotine()}"
+                app:layout_constraintStart_toStartOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
